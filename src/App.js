@@ -1,26 +1,35 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>Hello React</p>
-      </header>
-    </div>
-  );
+import Title from "./components/Title/Title";
+import Buttons from "./components/Buttons/Buttons";
+import StatList from "./components/StatList/StatList";
+
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  changeCount = (key) => {
+    this.setState((prevState) => {
+      const btn = key.toLowerCase();
+      return {
+        [btn]: prevState[btn] + 1,
+      };
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Title text="Please leave your feedback" />
+        <Buttons changeCount={this.changeCount} />
+        <Title text="Statistics" />
+        <StatList />
+      </div>
+    );
+  }
 }
 
 export default App;
