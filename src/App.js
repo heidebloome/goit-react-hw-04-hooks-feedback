@@ -20,13 +20,30 @@ class App extends Component {
     });
   };
 
+  countTotalFeedback = () => {
+    const total = this.state.good + this.state.neutral + this.state.bad;
+    return total;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const count = Math.round(
+      (this.state.good * 100) /
+        (this.state.good + this.state.neutral + this.state.bad)
+    );
+    return count;
+  };
+
   render() {
     return (
       <div>
         <Title text="Please leave your feedback" />
         <Buttons changeCount={this.changeCount} />
         <Title text="Statistics" />
-        <StatList />
+        <StatList
+          value={this.state}
+          totalFeedbackCount={this.countTotalFeedback}
+          positiveFeedbackCount={this.countPositiveFeedbackPercentage}
+        />
       </div>
     );
   }
