@@ -8,7 +8,6 @@ const Statistics = ({
   positiveFeedbackCount,
 }) => {
   const totalCount = totalFeedbackCount();
-  let positiveCount = positiveFeedbackCount();
 
   return (
     <div>
@@ -27,7 +26,7 @@ const Statistics = ({
             <p>Total: {totalCount}</p>
           </li>
           <li>
-            <p>Positive feedback: {positiveCount}%</p>
+            <p>Positive feedback: {positiveFeedbackCount()}%</p>
           </li>
         </ul>
       ) : (
